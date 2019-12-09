@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Find weeks of month with Javascript Moment and Moment Range</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <select id="LoadWeek"></select>
+
+</body>
+</html>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.1/moment-range.js"></script>
+<script>
+   
+   
+</script>
+<script type="text/javascript">
+    //Sample Year and Month Generally retrieve it from DatetimePicker.format{(MMM YYYY)}
+    year = 2019
+    month = 12
+    var weeks = [],
+    firstDate = new Date(year, month-1, 1),
+    lastDate = new Date(year, month, 0),
+    numDays = lastDate.getDate();
+    
+    var start = 1;
+    var end = 7 - firstDate.getDay();
+  
+    while (start <= numDays) {
+            weeks.push({ start: start  , end: end  });
+            start = end + 1;
+            end = end + 7;
+            if (end > numDays)
+                end = numDays;
+
+        }
+        
+    console.log(weeks)
+
+    //Loading Data into DropDownList
+    var _addDay = document.getElementById('LoadWeek');
+    weeks.forEach(function (week, index) {
+        var opt = document.createElement('option');
+        opt.innerHTML = week.start; opt.innerHTML += "-" + week.end;
+        opt.value = week.start - week.end;
+        _addDay.appendChild(opt);
+    });
+
+</script>
+
